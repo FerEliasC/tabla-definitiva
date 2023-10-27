@@ -1,0 +1,127 @@
+<!----------
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Sistema Proveedores</span>
+
+  <span style="flex: 1 1 auto"></span>
+  <label style="font-size: 14px; margin-right: 20px">
+      {{ correoUsuario }}|
+    </label>
+    <button mat-icon-button (click)="cerrarSesion()">
+      <mat-icon>logout</mat-icon>
+    </button> 
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav
+  #sidenav
+  mode="side"
+  [class.mat-elevation-z0]="true"
+  class="app-sidenav"
+>
+  <mat-expansion-panel [class.mat-elevation-z0]="true">
+    <mat-expansion-panel-header> Procesos </mat-expansion-panel-header>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/pages/orden-compra">
+          <div class="d-inline-flex">
+            <mat-icon>find_in_page</mat-icon>
+            <span matLine>Orden de Compra</span>
+          </div>
+        </a>
+  </mat-nav-list>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel [class.mat-elevation-z0]="true">
+    <mat-expansion-panel-header> Catálogos </mat-expansion-panel-header>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/pages/corporativos">
+          <div class="d-inline-flex">
+            <mat-icon>business</mat-icon>
+            <span matLine>Corporativo</span>
+          </div>
+        </a>
+  </mat-nav-list>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/pages/empresas">
+        <div class="d-inline-flex">
+          <mat-icon>business</mat-icon>
+          <span matLine>Empresa</span>
+        </div>
+      </a>
+    </mat-nav-list>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/pages/usuarios">
+        <div class="d-inline-flex">
+          <mat-icon>group</mat-icon>
+          <span matLine>Usuarios</span>
+        </div>
+      </a>
+    </mat-nav-list>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/pages/roles">
+        <div class="d-inline-flex">
+          <mat-icon>group</mat-icon>
+          <span matLine>Rol</span>
+        </div>
+      </a>
+    </mat-nav-list>
+  </mat-expansion-panel>
+ 
+</mat-sidenav>
+
+<mat-sidenav-content>
+    <div style="height: 90vh">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+-------->
+
+
+<router-outlet>
+  <nav>
+    <div class="cont-left">
+      <div>
+        <a  href="#" routerLink="/pages"><img class="img-teckio" src="../assets/teckio.png" alt=""></a>
+      </div>
+      <div class="element-menu">
+        <div class="dropdown">
+          <button class="btn button-menu dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Proveedores
+          </button>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/pages/orden-compra" class="dropdown-item" href="#">Orden de compra</a></li>
+            <li><a class="dropdown-item" href="#">Mis facturas</a></li>
+            <li><a class="dropdown-item" href="#">Depósitos</a></li>
+            <li><a class="dropdown-item" href="#">Documentación</a></li>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button class="btn button-menu dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Cátalogos
+          </button>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/pages/corporativos" class="dropdown-item" href="#">Corporativo</a></li>
+            <li><a routerLink="/pages/empresas" class="dropdown-item" href="#">Empresa</a></li>
+            <li><a routerLink="/pages/usuarios" class="dropdown-item" href="#">Usuarios</a></li>
+            <li><a routerLink="/pages/roles" class="dropdown-item" href="#">Rol</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cont-right">
+      <p style="color: #ABD8DE; text-align: center; display: flex; align-items: center; margin-top: 23px; margin-right: 10px;">{{ correoUsuario }}</p>
+      <button href="" class="cont-bi" (click)="cerrarSesion()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+        </svg>
+      </button>
+    </div>
+  </nav> 
+</router-outlet>

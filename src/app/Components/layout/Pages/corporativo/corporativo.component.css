@@ -1,0 +1,55 @@
+.button-newcorp {
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    margin-left: 100px;
+    align-items: center;
+    padding: 5px 50px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.47);
+    -moz-box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.47);
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.47);
+}
+
+.button-newcorp:hover {
+    background-color: #00161F;
+    color: #ABD8DE;
+}
+
+.cont-form {
+    display: flex;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.47);
+    -moz-box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.47);
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.47);
+    border-radius: 30px;
+  }
+
+.search {
+    border: none;
+    border-radius: 30px 0px 0 30px;
+    height: 38px;
+    width: 230px;
+}
+
+.search:active {
+    border: none;
+}
+
+.button-2 {
+    border-radius: 0 30px 30px 0;
+    border: solid 1px #000;
+    border-left: none;
+    width: 100px;
+    background-color: #00161F;
+    color: #ABD8DE;
+}
+
+.button-2:hover {
+    background-color: #87B4B9;
+    color: #00161F;
+}

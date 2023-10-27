@@ -1,0 +1,545 @@
+<div style="margin: 20px 40px 40px 40px">
+  <div style="display: flex; justify-content: space-between; align-items: center" class="cont-filter">
+    <div class="cont-filtro">
+      <div class="cont-filtro">
+        <div class="form-group">
+          <label class="label-calendar" for="fechaInicio" style="font-weight: bold;">
+            Inicio
+            <svg style="margin-left: 10px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg>
+          </label>
+          <input style="text-align: center;" type="text" class="form-control" id="fechaInicio" data-provide="datepicker" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy">
+        </div>
+    
+        <div class="form-group" style="margin-right: 16px;">
+          <label class="label-calendar" for="fechaFin" style="font-weight: bold;">
+            Final
+            <svg style="margin-left: 10px;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg>
+          </label>
+          <input style="text-align: center;" type="text" class="form-control" id="fechaFin" data-provide="datepicker" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy">
+        </div>
+      </div>
+    </div>
+
+    <div class="asignar">
+      <form>
+        <input class="search" style="text-align: center;" #input placeholder="orden de compra" />
+      </form>
+      <form>
+        <input class="search" style="text-align: center;" #div placeholder="División" />
+      </form>
+      <button class="button-2"  (click)="obtenerOrdenCompra(input.value,div.value)">
+        Buscar
+      </button>
+    </div>
+  </div>
+
+  <br />
+
+<!------------------------------------------------------------------------------Tabla con angular material--------------------------------------------------------------------
+  <mat-card-content class="dashboard-card-content">
+    <div class="mat-elevation-z2">
+      <table class="table" mat-table [dataSource]="dataListaOrdenCompra.data">
+        <ng-container matColumnDef="seleccionar">
+          <th mat-header-cell *matHeaderCellDef>Seleccionar</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox [checked]="element.selected" (change)="toggleContenido()"></mat-checkbox>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="numeroOrdenCompra">
+          <th mat-header-cell *matHeaderCellDef>No. OC</th>
+          <td mat-cell *matCellDef="let element" (click)="toggleContenido()">
+            {{ element.numeroOrdenCompra }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="proveedor">
+          <th mat-header-cell *matHeaderCellDef>Proveedor</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.proveedor }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.fecha }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef>Total</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.total }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estatusOrdenCompra">
+          <th mat-header-cell *matHeaderCellDef>Estatus</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.estatusOrdenCompra }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnasTabla"></tr>
+
+        <tr style="border: none;" class="mat-row" *matNoDataRow>
+          <td style="border: none;" class="mat-cell" colspan="4">
+            No hay datos que coincidan con el filtro"{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-card-content>
+  
+  <mat-card-content class="dashboard-card-content" [class.ocultar-contenido]="!mostrarContenido">
+    <div class="mat-elevation-z2">
+      <table class="table" mat-table [dataSource]="dataListaOrdenCompraDetalle.data">
+        <ng-container matColumnDef="seleccionar">
+          <th mat-header-cell *matHeaderCellDef>Seleccionar</th>
+          <td mat-cell *matCellDef="let element">
+            <mat-checkbox [checked]="element.selected" (change)="toggleContenido2( element.noLinea)"></mat-checkbox>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="noLinea">
+          <th mat-header-cell *matHeaderCellDef>No. Linea</th>
+          <td mat-cell *matCellDef="let element" (click)="toggleContenido2(element.noLinea)">
+            {{ element.noLinea }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>Descripción</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.descripcion }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cantidad">
+          <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.cantidad }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="unidad">
+          <th mat-header-cell *matHeaderCellDef>Unidad</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.unidad }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="costoUnitario">
+          <th mat-header-cell *matHeaderCellDef>Precio</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.costoUnitario }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="costoTotal">
+          <th mat-header-cell *matHeaderCellDef>Importe</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.costoTotal }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnasTabla2"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnasTabla2"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No hay datos que coincidan con el filtro"{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-card-content>
+
+  <mat-card-content class="dashboard-card-content" [class.ocultar-contenido2]="!mostrarContenido2">
+    <div class="mat-elevation-z2">
+      <button mat-raised-button color="primary" class="custom-button" (click)="obtenerOrdenCompragGeneral()">
+        <mat-icon mat-list-icon>address</mat-icon>Entradas
+      </button>
+      <button mat-raised-button color="primary" class="custom-button"(click)="obtenerOrdenCompraLinea()">
+        <mat-icon mat-list-icon>address</mat-icon>Entradas por Línea
+      </button>
+      
+    </div>
+  </mat-card-content>
+
+  <mat-card-content class="dashboard-card-content" [class.ocultar-contenido3]="!mostrarContenido3">
+    <div class="mat-elevation-z2">
+      <table class="table" mat-table [dataSource]="dataListaOrdenCompraentradasDetalleGeneral.data">
+
+        <ng-container matColumnDef="noEntrada">
+          <th mat-header-cell *matHeaderCellDef>No. Entrada</th>
+          <td mat-cell *matCellDef="let element" (click)="toggleContenido3(element.nombreNormal)">
+            {{ element.nombreRecortado }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef>Fecha</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.fecha }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+          <th mat-header-cell *matHeaderCellDef>Total</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.total }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="moneda">
+          <th mat-header-cell *matHeaderCellDef>Moneda</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.moneda }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="referencia">
+          <th mat-header-cell *matHeaderCellDef>Referencia</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.referencia }}
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnasTabla4"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnasTabla4"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No hay datos que coincidan con el filtro"{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-card-content>
+ 
+  <mat-card-content class="dashboard-card-content" [class.ocultar-contenido4]="!mostrarContenido4">
+
+    <mat-select class="orden-linea" placeholder="Seleccionar opción" (valueChange)="seleccionarOpcion($event)">
+        <mat-option value="00010">00010</mat-option>
+        <mat-option value="00020">00020</mat-option>
+        <mat-option value="00030">00030</mat-option>
+        <mat-option value="00040">00040</mat-option>
+        <mat-option value="00050">00050</mat-option>
+        <mat-option value="00060">00060</mat-option>
+        <mat-option value="00070">00070</mat-option>
+    </mat-select>
+
+    <div class="mat-elevation-z2">
+      <table class="table" mat-table [dataSource]="dataListaOrdenCompraentradasDetalle.data">
+
+        <ng-container matColumnDef="noLinea">
+          <th mat-header-cell *matHeaderCellDef>No. Linea</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.noLinea }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cantidad">
+          <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.cantidad }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>Descripción</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.descripcion }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="unidadMedida">
+          <th mat-header-cell *matHeaderCellDef>Unidad</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.unidadMedida }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="precioUnitario">
+          <th mat-header-cell *matHeaderCellDef>Precio</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.precioUnitario }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="importe">
+          <th mat-header-cell *matHeaderCellDef>Importe</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.importe }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnasTabla3"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnasTabla3"></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No hay datos que coincidan con el filtro"{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-card-content>
+
+-->
+
+<!-------------------------------------------------------------------------------------------------Nueva tabla-------------------------------------------------------------------------------------->
+
+<!-------------------------Icono ocultar tablas-------------------------------->
+
+<button class="ocultar" (click)="ocultarTablas()">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+    <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
+    <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+    <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
+  </svg>
+</button>
+
+<!-------------------------Tabla orden de compra------------------------------->
+<div class="cont-table orden-compra" >
+  <table class="table table-striped rounded table-hover orden" >
+    <thead>
+      <tr>
+        <th class="cabecera" style="width: 377px;"  scope="col">No O.C</th>
+        <th class="cabecera" style="width: 377px;"  scope="col">Proveedor</th>
+        <th class="cabecera" style="width: 377px;"  scope="col">Fecha</th>
+        <th class="cabecera"  scope="col">Estatus</th>
+        <th class="cabecera"  scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  (click)="toggleTabla2();">
+        <td class="none" style="width: 377px;">4500752537</td>
+        <td class="none" style="width: 377px;">INFRA SA DE CV</td>
+        <td class="none" style="width: 377px;">2022-04-13T00:00:01</td>
+        <td class="none">0</td>
+        <td class="none">$5,419,445</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-------------------------Tabla detalle orden de compra------------------------->
+<div *ngIf="mostrarTabla2" id="tabla-detalle" class="cont-table tabla-detalle" >
+  <table class="table table-striped rounded table-hover">
+    <thead>
+      <tr>
+        <th style="width: 377px;" class="cabecera"  scope="col">No. Línea</th>
+        <th style="width: 377px;" class="cabecera"  scope="col">Descripción</th>
+        <th style="width: 377px;" class="cabecera"  scope="col">Cantidad</th>
+        <th class="cabecera"  scope="col">Unidad</th>
+        <th class="cabecera"  scope="col">Precio</th>
+        <th class="cabecera"  scope="col">Importe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)="toggleTabla3();">
+        <td style="width: 377px;" class="none">00010</td>
+        <td style="width: 377px;" class="none">NITROGENO LIQUIDO ALTA PRESION</td>
+        <td style="width: 377px;" class="none">70,000</td>
+        <td class="none">kg</td>
+        <td class="none">$29.5</td>
+        <td class="none">$2,065,000</td>
+      </tr>
+      <tr>
+        <td style="width: 377px;" class="none">00020</td>
+        <td style="width: 377px;" class="none">NITROGENO LIQUIDO ALTA PRESION</td>
+        <td style="width: 377px;" class="none">90,000</td>
+        <td class="none">kg</td>
+        <td class="none">$29.5</td>
+        <td class="none">$2,655,000</td>
+      </tr>
+      <tr>
+        <td style="width: 377px;" class="none">00030</td>
+        <td style="width: 377px;" class="none">NITROGENO LIQUIDO ALTA PRESION</td>
+        <td style="width: 377px;" class="none">600</td>
+        <td class="none">kg</td>
+        <td class="none">$29.5</td>
+        <td class="none">$17,700</td>
+      </tr>
+      <tr>
+        <td style="width: 377px;" class="none">00040</td>
+        <td style="width: 377px;" class="none">NITROGENO LIQUIDO ALTA PRESION</td>
+        <td style="width: 377px;" class="none">1200</td>
+        <td class="none">kg</td>
+        <td class="none">$29.5</td>
+        <td class="none">$35,400</td>
+      </tr>
+      <tr>
+        <td style="width: 377px;" class="none">00050</td>
+        <td style="width: 377px;" class="none">NITROGENO LIQUIDO ALTA PRESION</td>
+        <td style="width: 377px;" class="none">300</td>
+        <td class="none">kg</td>
+        <td class="none">$29.5</td>
+        <td class="none">$8.850</td>
+      </tr>
+      <tr>
+        <td style="width: 377px;" class="none">00060</td>
+        <td style="width: 377px;" class="none">NITROGENO LIQUIDO ALTA PRESION</td>
+        <td style="width: 377px;" class="none">150</td>
+        <td class="none">kg</td>
+        <td class="none">$29.5</td>
+        <td class="none">$4,425</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="mostrarTabla3" class="contenedor-entradas">
+  <button class="button-entradas" >
+    Entradas
+  </button>
+  <button style="margin-bottom: 10px;"  class="button-entradas" (click)="toggleTabla4();">
+    Entradas por Línea
+  </button>
+
+  <!-------------------------Tabla detalle entradas-------------------------->
+  <table class="table table-striped rounded table-hover orden">
+    <thead>
+      <tr>
+        <th class="cabecera" style="width: 377px;"  scope="col">No Entrada</th>
+        <th class="cabecera" style="width: 377px;"  scope="col">Fecha</th>
+        <th class="cabecera" style="width: 377px;"  scope="col">Referencia</th>
+        <th class="cabecera"  scope="col">Moneda</th>
+        <th class="cabecera"  scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr (click)="toggleTabla5();">
+        <td class="none" style="width: 377px;">5000111955</td>
+        <td class="none" style="width: 377px;">2023-07-14T00:00:01</td>
+        <td class="none" style="width: 377px;">60,9722</td>
+        <td class="none">MXN</td>
+        <td class="none">	$25,665.00 </td>
+      </tr>
+      <tr>
+        <td class="none" style="width: 377px;">5000168247</td>
+        <td class="none" style="width: 377px;">	2023-10-17T00:00:01</td>
+        <td class="none" style="width: 377px;">627195</td>
+        <td class="none">MXN</td>
+        <td class="none">	$18,478.80</td>
+      </tr>
+      <tr>
+        <td class="none" style="width: 377px;">5000170529</td>
+        <td class="none" style="width: 377px;">	2023-10-21T00:00:01</td>
+        <td class="none" style="width: 377px;">628199</td>
+        <td class="none">MXN</td>
+        <td class="none">	$13,859.10</td>
+      </tr>
+      <tr>
+        <td class="none" style="width: 377px;">5000171357</td>
+        <td class="none" style="width: 377px;">	2023-10-23T00:00:01</td>
+        <td class="none" style="width: 377px;">627950</td>
+        <td class="none">MXN</td>
+        <td class="none">	$18,478.80</td>
+      </tr>
+      <tr>
+        <td class="none" style="width: 377px;">5000171357</td>
+        <td class="none" style="width: 377px;">	2023-10-23T00:00:01</td>
+        <td class="none" style="width: 377px;">627950</td>
+        <td class="none">MXN</td>
+        <td class="none">	$18,478.80</td>
+      </tr>
+      <tr>
+        <td class="none" style="width: 377px;">5000171357</td>
+        <td class="none" style="width: 377px;">	2023-10-23T00:00:01</td>
+        <td class="none" style="width: 377px;">627950</td>
+        <td class="none">MXN</td>
+        <td class="none">	$18,478.80</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="contenedor-entradas" *ngIf="mostrarTabla4">
+  <div class="cont-botones">
+    <div>
+      <button  class="button-entradas" (click)="toggleBotonEntradas()">
+        Entradas
+      </button>
+    </div>
+  
+    <div class="select-linea">
+      <!--------------------------------Seleccionador tipo 1---------------------------------
+      <form>
+        <input class="seleccionador" style="text-align: center;" #input placeholder="no. linea: 00010" />
+      </form>
+      <div class="counter">
+        <button style="width: 50px; border-radius: 0 15px 0 0;" id="increment">▲</button>
+        <button style="width: 50px; border-radius: 0 0 15px 0;" id="decrement">▼</button>
+      </div>
+      --->
+      <!--------------------------------------Seleccionador tipo2--------------------------------------------->
+      <div class="dropdown">
+        <button class="seleccionador btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          No. de línea 00010
+        </button>
+        <ul style="width: 370px;" class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">0020</a></li>
+          <li><a class="dropdown-item" href="#">0030</a></li>
+          <li><a class="dropdown-item" href="#">0040</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-------------------------Tabla detalle entradas por línea-------------------------->
+  <table class="table table-striped rounded table-hover orden">
+    <thead>
+      <tr>
+        <th class="cabecera" style="width: 377px;"  scope="col">No. Línea</th>
+        <th class="cabecera" style="width: 377px;"  scope="col">Cantidad</th>
+        <th class="cabecera" style="width: 377px;"  scope="col">Descripción</th>
+        <th class="cabecera"  scope="col">Unidad</th>
+        <th class="cabecera"  scope="col">Precio</th>
+        <th class="cabecera"  scope="col">Importe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="none" style="width: 377px;">00010</td>
+        <td class="none" style="width: 377px;">750</td>
+        <td class="none" style="width: 377px;">Nitrogeno Líquido alta presión</td>
+        <td class="none">KG</td>
+        <td class="none">	29.5 </td>
+        <td class="none">	$22,125 </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="mostrarTabla5">
+  <table class="table table-striped rounded table-hover orden">
+    <thead>
+      <tr>
+        <th class="cabecera" style="width: 377px;" scope="col">Linea</th>
+        <th class="cabecera" style="width: 377px;" scope="col">Cantidad</th>
+        <th class="cabecera" scope="col">Unidad</th>
+        <th class="cabecera" scope="col">Entregado</th>
+        <th class="cabecera" scope="col">Importe</th>
+        <th class="cabecera" scope="col">Estatus</th>
+        <th class="cabecera" scope="col">Observaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="none" style="width: 377px;" scope="col">0010</td>
+        <td class="none" style="width: 377px;" scope="col">45</td>
+        <td class="none" style="width: 377px;" scope="col">PZ</td>
+        <td class="none" scope="col">440</td>
+        <td class="none" scope="col">450</td>
+        <td class="none" scope="col">Facturada</td>
+        <td class="none" scope="col">Entrada totalmente facturada</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+
+

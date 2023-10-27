@@ -1,0 +1,105 @@
+<h2 mat-dialog-title>{{ tituloAccion }} Usuario</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="formularioUsuario">
+    <mat-grid-list cols="2" rowHeight="80px">
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre Usuario</mat-label>
+          <input matInput autocomplete="off" formControlName="nombreCompleto" />
+          <mat-icon matSuffix>account-box</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Usuario</mat-label>
+          <input matInput autocomplete="off" formControlName="nombreUsuario" />
+          <mat-icon matSuffix>account-box</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="2" rowHeight="80px">
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>RFC</mat-label>
+          <input matInput autocomplete="off" formControlName="rfc" />
+          <mat-icon matSuffix>account-box</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Rol</mat-label>
+          <mat-select formControlName="idRol">
+            <mat-option *ngFor="let item of listaRoles" [value]="item.id">
+                {{item.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="2" rowHeight="80px">
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Correo</mat-label>
+          <input matInput autocomplete="off" formControlName="correo" />
+          <mat-icon matSuffix>mail</mat-icon>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Contraseña</mat-label>
+            <input matInput [type]="ocultarPassword?'password':'text'"formControlName="password">
+            <button mat-icon-button matSuffix 
+                (click)="ocultarPassword = !ocultarPassword" type="button">
+                <mat-icon matSuffix>{{ocultarPassword ? 'visibility_off' :'visibility'}}</mat-icon>    
+            </button>    
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <mat-grid-list cols="2" rowHeight="80px">
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="esActivo">
+            <mat-option value="1">Activo</mat-option>
+            <mat-option value="0">No Activo</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="fill">
+            <mat-label>Empresas</mat-label>
+            <mat-select multiple formControlName="noEmpresas">
+                <mat-select-trigger>
+                  </mat-select-trigger>
+                <mat-option *ngFor="let item of listaEmpresas" [value]="item.id">
+                  {{ item.nombre }}
+                </mat-option>
+              </mat-select>
+        </mat-form-field>
+
+      </mat-grid-tile>
+
+    </mat-grid-list>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close color="warn">Cancelar</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="formularioUsuario.invalid"
+    (click)="guardarEditar_Usuario()"
+  >
+    {{ botonAccion }}
+  </button>
+</mat-dialog-actions>

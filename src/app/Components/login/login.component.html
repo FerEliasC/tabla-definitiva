@@ -1,0 +1,41 @@
+<div class="body">
+  <div class="cont-left">
+    <div class="cont-img"><img class="img-login" src="../../../assets/teckio.png" alt=""></div>
+  </div>
+
+  <div class="cont-r">
+    <div class="loginCard">
+      <div class="header">
+        <img style="width: 150px; background-color: #00161fef; padding: 0 10px; border-radius: 7px;" src="../../../assets/teckio.png" alt="">
+        <h2 style="margin-top: 20px;">Login</h2>
+      </div>
+  
+      <div>
+        <form class="form-login" [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion(formularioLogin.value)">
+  
+          <mat-form-field class="form-login" appearance="outline" style="width: 300px;">
+            <mat-label>Email</mat-label>
+            <input formControlName="Email" matInput autocomplete="off">
+            <mat-icon matSuffix>mail</mat-icon>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input [type]="ocultarPassword?'password':'text'" formControlName="Password" matInput autocomplete="off">
+  
+            <button mat-icon-button matSuffix (click)="ocultarPassword = !ocultarPassword" type="button">
+              <mat-icon matSuffix>{{ocultarPassword ? 'visibility_off' :'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+  
+          <div>
+            <button class="button-form" type="submit">
+              Ingresar
+            </button>
+          </div>
+  
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

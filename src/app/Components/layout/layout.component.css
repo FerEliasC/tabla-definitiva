@@ -1,0 +1,64 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00161F;
+    width: 98%;
+    height: 80px;
+    margin: 10px auto;
+    padding: 0 20px;
+    border-radius: 7px;
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.32);
+    -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.32);
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.32);
+    position: static;
+}
+.button-menu {
+    background-color: #00161F;
+    margin-left: 20px;
+    -webkit-box-shadow: 0px 4px 5px 0px rgba(171, 216, 222, 0.32);
+    -moz-box-shadow: 0px 4px 5px 0px rgba(171, 216, 222, 0.32);
+    box-shadow: 0px 4px 5px 0px rgba(171, 216, 222, 0.32);
+    padding: 5px;
+    border-radius: 7px;
+    text-decoration: none;
+    color: #ABD8DE;
+}
+.button-menu:hover {
+    background-color: #ABD8DE;
+    color: #00161F;
+}
+.img-teckio {
+    width: 170px;
+}
+
+.element-menu {
+    display: flex;
+}
+.cont-left {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.dropdown {
+    margin-top: 33px;
+}
+.cont-right{
+    display: flex;
+}
+.cont-bi {
+    background-color: #ABD8DE;
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 34px;
+    width: 34px;
+    border: none;
+}
+.cont-bi:hover {
+    background-color: #C0EFF5;
+}
+.bi-person {
+    color: #00161F;
+}
